@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  extract-service:
+    build:
+      context: ./extract-service
+    ports:
+      - "8003:8003"
+    networks:
+      - my-network
+
+  transform-service:
+    build:
+      context: ./transform-service
+    ports:
+      - "8004:8004"
+    networks:
+      - my-network
+
+  load-service:
+    build:
+      context: ./load-service
+    ports:
+      - "8005:8005"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
