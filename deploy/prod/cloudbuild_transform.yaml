@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/testeval-427400/transform-service', '.', '-f', 'deploy/prod/Dockerfile_transform']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/testeval-427400/transform-service']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'transform-service', '--image', 'gcr.io/testeval-427400/transform-service', '--region', 'us-central1', '--no-allow-unauthenticated', '--port', '8003', '--memory', '1Gi', '--cpu', '1', '--max-instances', '2', '--min-instances', '0']
+images:
+- gcr.io/testeval-427400/transform-service

@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/testeval-427400/load-service', '.', '-f', 'deploy/prod/Dockerfile_load']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/testeval-427400/load-service']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'load-service', '--image', 'gcr.io/testeval-427400/load-service', '--region', 'us-central1', '--allow-unauthenticated', '--port', '8004', '--memory', '1Gi', '--cpu', '1', '--max-instances', '2', '--min-instances', '0']
+images:
+- gcr.io/testeval-427400/load-service

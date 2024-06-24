@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/testeval-427400/extract-service', '.', '-f', 'deploy/prod/Dockerfile_extract']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/testeval-427400/extract-service']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'extract-service', '--image', 'gcr.io/testeval-427400/extract-service', '--region', 'us-central1', '--no-allow-unauthenticated', '--port', '8002', '--memory', '1Gi', '--cpu', '1', '--max-instances', '2', '--min-instances', '0']
+images:
+- gcr.io/testeval-427400/extract-service
