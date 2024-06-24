@@ -1,0 +1,2 @@
+API_URL='http://localhost:8004/clanes_personajes_populares'#Corriendo en el host
+API_URL='http://transform-service:8004/clanes_personajes_populares'#Para docker-compose

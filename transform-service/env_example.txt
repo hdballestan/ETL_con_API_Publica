@@ -1,0 +1,2 @@
+EXTRACT_URL=http://localhost:8003/extract?name=#consola
+EXTRACT_URL=http://extract-service:8003/extract?name=# Para el docker-compose. También se puede usar la IP del contenedor de extrar en la network en lugar del nombre del servicio.
