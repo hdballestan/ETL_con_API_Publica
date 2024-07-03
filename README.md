@@ -1,5 +1,5 @@
 # ETL_con_API_Publica
-Proyecto sencillo en FastAPI para extraer datos de una API pública.
+Proyecto en que se crean 3 microservicios en FastAPI para extraer datos de una API pública y se despliega usando Google Cloud Run.
 
 **Descripción del Proyecto: Plataforma de Análisis de Datos del Anime Naruto**
 
